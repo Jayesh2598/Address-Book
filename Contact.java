@@ -16,7 +16,7 @@ public class Contact {
 		this.phoneNo = phoneNo;
 		this.email = email;
 	}
-
+	
 	//Getters
 	public String getFirstName() {
 		return firstName;
