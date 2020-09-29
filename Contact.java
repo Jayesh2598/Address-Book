@@ -67,6 +67,5 @@ public class Contact {
 	}
 	public void setPhoneNo(long phoneNo) {
 		this.phoneNo = phoneNo;
-	}
-	
+	}	
 }

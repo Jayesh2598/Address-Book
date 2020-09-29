@@ -3,6 +3,7 @@ package com.capgemini.training;
 import java.util.*;
 
 public class AddressBookMain {
+	
 	static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
