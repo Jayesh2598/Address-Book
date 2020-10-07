@@ -37,7 +37,7 @@ public class AddressBook {
 			if (changeFields.length() > 1)
 				editables = changeFields.trim().split(",");
 			else
-				editables = new String[] {changeFields};
+				editables = new String[] { changeFields };
 			Arrays.sort(editables);
 
 			// Preventing change of contact name to duplicate another existing contact
