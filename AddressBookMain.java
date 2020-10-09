@@ -43,7 +43,6 @@ public class AddressBookMain {
 					String city = SC.nextLine().toLowerCase();
 					Set<Contact> personsOfCity = dictionary.getCityPersons().get(city);
 					if(personsOfCity != null) {
-						System.out.println("First Name\tLast Name");
 						long count = personsOfCity.stream().count();
 						personsOfCity.stream().forEach(contact -> System.out.println(contact.getFirstName()+" "+contact.getLastName()));
 						System.out.println("Number of contacts in "+city+" are: "+count);
@@ -56,7 +55,6 @@ public class AddressBookMain {
 					String state = SC.nextLine().toLowerCase();
 					Set<Contact> personsOfState = dictionary.getStatePersons().get(state);
 					if(personsOfState != null) {
-						System.out.println("First Name\tLast Name");
 						long count = personsOfState.stream().count();
 						personsOfState.stream().forEach(contact -> System.out.println(contact.getFirstName()+"\t"+contact.getLastName()));
 						System.out.println("Number of contacts in "+state+" are: "+count);
@@ -85,7 +83,7 @@ public class AddressBookMain {
 		boolean loop = true;
 		while (loop) {
 			System.out.println(
-					"Enter your choice:\n1. Enter a new contact\n2. Edit an existing contact\n3. Delete an existing contact\n4. Sort entries by name\n5. Exit from this address book");
+					"Enter your choice:\n1. Enter a new contact\n2. Edit an existing contact\n3. Delete an existing contact\n4. Sort entries by name\n5. Sort by City\n6. Sort by State\n7. Sort by ZIP\n8. Exit from this address book");
 			int choice2 = Integer.parseInt(SC.nextLine());
 
 			switch (choice2) {
@@ -134,12 +132,30 @@ public class AddressBookMain {
 					sortedByName = book.getAddressBook().stream()
 							.map(Contact -> Contact.toString())
 							.sorted().collect(Collectors.toList());
-					sortedByName.stream().forEach(contact -> System.out.println(contact));
+					sortedByName.stream().forEach(System.out::println);
 				}
 				else
 					System.out.println("AddressBook is empty.");
 				break;
 			case 5:
+				if (book.getAddressBook().size() > 0) 
+					book.getAddressBook().stream().sorted((con1,con2) -> con1.getCity().compareToIgnoreCase(con2.getCity())).forEach(System.out::println);
+				else
+					System.out.println("AddressBook is empty.");
+				break;
+			case 6:
+				if (book.getAddressBook().size() > 0) 
+					book.getAddressBook().stream().sorted((con1,con2) -> con1.getState().compareToIgnoreCase(con2.getState())).forEach(System.out::println);
+				else
+					System.out.println("AddressBook is empty.");
+				break;
+			case 7:
+				if (book.getAddressBook().size() > 0) 
+					book.getAddressBook().stream().sorted((con1,con2) -> con1.getZip()-con2.getZip()).forEach(System.out::println);
+				else
+					System.out.println("AddressBook is empty.");
+				break;
+			case 8:
 				System.out.println("Exiting from this address book...");
 				loop = false;
 				break;
