@@ -83,7 +83,7 @@ public class AddressBookMain {
 		boolean loop = true;
 		while (loop) {
 			System.out.println(
-					"Enter your choice:\n1. Enter a new contact\n2. Edit an existing contact\n3. Delete an existing contact\n4. Sort entries by name\n5. Sort by City\n6. Sort by State\n7. Sort by ZIP\n8. Exit from this address book");
+					"Enter your choice:\n1. Enter a new contact\n2. Edit an existing contact\n3. Delete an existing contact\n4. Sort entries by name\n5. Sort by City\n6. Sort by State\n7. Sort by ZIP\n8. Read from or Write into a file\n9. Exit from this address book");
 			int choice2 = Integer.parseInt(SC.nextLine());
 
 			switch (choice2) {
@@ -156,6 +156,22 @@ public class AddressBookMain {
 					System.out.println("AddressBook is empty.");
 				break;
 			case 8:
+				if (book.getAddressBook().size() > 0) {
+					new AddressBookFileIOService().writeToFile(book.getAddressBook());
+					System.out.println("Write successful. Do you want to read the file? (y/n):");
+					char option = SC.nextLine().charAt(0);
+					if(option == 'y')	{
+						List<String> fileEntries = new AddressBookFileIOService().readFile();
+						System.out.println(fileEntries);
+						
+					}	
+					else
+						System.out.println("Thank you.");
+				}	
+				else
+					System.out.println("AddressBook is empty.");
+				break;
+			case 9:
 				System.out.println("Exiting from this address book...");
 				loop = false;
 				break;
